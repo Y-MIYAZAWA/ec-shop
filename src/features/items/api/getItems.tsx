@@ -1,4 +1,3 @@
-import { TabsStartScrollButtonIconSlotPropsOverrides } from "@mui/material";
 import { axios } from "../../../library/axios"
 import { PaginationType } from "../types/pagination";
 
