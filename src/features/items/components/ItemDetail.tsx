@@ -22,8 +22,8 @@ export default function ItemDetail(){
     updatedBy: 0
     })
   useEffect(() => {
+    setLoading(true)
     const itemDetail = async () => {
-      setLoading(true)
       const response = await getItemDetail(pathName)
       setLoading(false);
       setItem(response);
