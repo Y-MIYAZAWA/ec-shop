@@ -1,0 +1,16 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+}
+#icons{
+  margin: 0%;
+  display: flex;
+}
+div{
+  margin: auto 5%;
+}
+img{
+  height: 3rem;
+  width: 3rem;
+}
