@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react"
 import { getItems } from "../api/getItems";
-import { Card, Pagination, styled, withStyles } from "@mui/material";
+import { Card, Pagination } from "@mui/material";
 import { PaginationType } from "../types/pagination";
 import { Item } from "../types/item";
 
