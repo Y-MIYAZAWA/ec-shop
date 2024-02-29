@@ -6,6 +6,7 @@ import LoginForm from "./features/auth/components/LoginForm";
 import TopPage from "./top_page";
 import { ProtectedRoute } from "./routes/protectedRoute";
 import MyPage from "./features/users/components/MyPage";
+import ItemDetail from "./features/items/components/ItemDetail";
 
 
 
@@ -22,6 +23,7 @@ export default function App(){
           <Route path="/" Component={TopPage} />
           <Route path="/login" Component={LoginForm} />
           <Route path="/logout" Component={LogoutFn} />
+          <Route path="/items/*" Component={ItemDetail} />
           <Route path="/mypage" element={
             <ProtectedRoute>
               <MyPage />

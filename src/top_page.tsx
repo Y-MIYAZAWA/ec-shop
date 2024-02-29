@@ -1,4 +1,4 @@
-import { GetItemsAndPaging } from "./features/items/components/getItemsAndPaging";
+import { ItemsAndPaging } from "./features/items/components/ItemsAndPaging";
 
 export default function TopPage(){
 
@@ -8,7 +8,7 @@ export default function TopPage(){
       <p>LH-EC-SHOPへようこそ</p>
     </div>
     <div>
-      <GetItemsAndPaging />
+      <ItemsAndPaging />
     </div>
     </>
   )
