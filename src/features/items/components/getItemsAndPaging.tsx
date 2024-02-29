@@ -3,6 +3,9 @@ import { getItems } from "../api/getItems";
 import { Card, Pagination } from "@mui/material";
 import { PaginationType } from "../types/pagination";
 import { Item } from "../types/item";
+import { Loading } from "../../../components/Elements/Loading/Loading";
+import { useRecoilState } from "recoil";
+import { loadingState } from "../../../recoils/atoms/loadingState";
 
 
 export const GetItemsAndPaging = () => {

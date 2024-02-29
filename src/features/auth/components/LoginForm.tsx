@@ -5,9 +5,8 @@ import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginWithRequirement } from "../api/login";
 import storage from "../../../utilities/storage";
-import { useRecoilState } from "recoil";
-import { loginState } from "../../../recoils/atoms/loginState";
 import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -30,12 +29,12 @@ const LoginForm = () => {
   });
 
 
-  const [ isLogin, setLogin ] = useRecoilState(loginState)
-
   const onSubmit: SubmitHandler<Form> = async (data) => {
+
     const response = await loginWithRequirement(data);
+
     storage.setToken(response.token);
-    setLogin(true);
+
     navigate('/');
   }
 

@@ -5,8 +5,7 @@ import LogoutFn from "./features/auth/components/LogoutAction";
 import LoginForm from "./features/auth/components/LoginForm";
 import TopPage from "./top_page";
 import MyPage from "./features/users/components/MyPage";
-import { Suspense } from "react";
-import { Loading } from "./components/Elements/Loading/Loading";
+
 
 
 
@@ -16,14 +15,12 @@ export default function App(){
     <>
     <BrowserRouter>
       <Header />
-        <Suspense fallback={<Loading />} >
-          <Routes>
-            <Route path="/" Component={TopPage} />
-            <Route path="/login" Component={LoginForm} />
-            <Route path="/logout" Component={LogoutFn} />
-            <Route path="/mypage" Component={MyPage} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" Component={TopPage} />
+          <Route path="/login" Component={LoginForm} />
+          <Route path="/logout" Component={LogoutFn} />
+          <Route path="/mypage" Component={MyPage} />
+        </Routes>
       <Footer />  
     </BrowserRouter>
     </>
