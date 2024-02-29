@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginWithRequirement } from "../api/login";
 import storage from "../../../utilities/storage";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../recoils/atoms/loginState";
 
 
 
@@ -23,6 +25,7 @@ const schema = yup.object({
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [isLogin, setLogin] = useRecoilState(loginState);
 
   const { register, handleSubmit, formState: {errors} } = useForm<Form>({
     resolver: yupResolver(schema)
@@ -34,6 +37,8 @@ const LoginForm = () => {
     const response = await loginWithRequirement(data);
 
     storage.setToken(response.token);
+
+    setLogin(true);
 
     navigate('/');
   }
