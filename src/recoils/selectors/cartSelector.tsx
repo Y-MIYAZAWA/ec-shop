@@ -1,5 +1,6 @@
 import { selector } from "recoil";
 import { cartState } from "../atoms/cartState";
+import { constrainedMemory } from "process";
 
 export const totalPriceSelector = selector({
   key: 'totalPriceSelector',
@@ -10,3 +11,13 @@ export const totalPriceSelector = selector({
     },0);
   }
 });
+
+export const countItemsSelector = selector({
+  key: 'countItemsSelector',
+  get: ({get}) => {
+    const cart = get(cartState);
+    return cart.cartItems.reduce((sum, cartItem) => {
+      return sum + cartItem.quantity;
+    }, 0)
+  }
+})

@@ -8,6 +8,8 @@ import storage from "../../../utilities/storage";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../../recoils/atoms/loginState";
+import { useState } from "react";
+import { Loading } from "../../../components/Elements/Loading/Loading";
 
 
 
@@ -25,22 +27,36 @@ const schema = yup.object({
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [isLogin, setLogin] = useRecoilState(loginState);
+  const [isLogin, setLogin] = useRecoilState<boolean>(loginState);
+  const [isFailed, setFailed] = useState<boolean>(false);
 
   const { register, handleSubmit, formState: {errors} } = useForm<Form>({
     resolver: yupResolver(schema)
   });
 
+  const [isLoading, setLoading] = useState<boolean>(false)
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
+    setLoading(true);
 
-    const response = await loginWithRequirement(data);
-
+    loginWithRequirement(data)
+    .then((response) => {
+    
     storage.setToken(response.token);
 
     setLogin(true);
 
+    setLoading(false);
+
+    setFailed(false);
+
     navigate('/');
+    }
+    )
+    .catch((error) => {
+      setLoading(false)
+      setFailed(true)
+    })
   }
 
   
@@ -49,9 +65,14 @@ const LoginForm = () => {
     <FormControl id="login">
       <Stack spacing={2}>
         <div>ユーザーログイン</div>
+        {isLoading ? <Loading /> :
+        <>
         <TextField required id="email" variant="standard" type="email" label="e-mail" autoComplete="off" {...register("email")} error={'email' in errors} helperText={errors.email?.message} />
         <TextField required id="password" variant="standard" type="password" label="password" {...register("password")} error={'password' in errors} helperText={errors.password?.message} />
         <Button id="button" variant="outlined" disabled={false} onClick={handleSubmit(onSubmit)}>ログイン</Button>
+        {isFailed ? <div>ログインに失敗しました。もう一度お試しください。</div> : 
+        ""}
+        </>}
       </Stack>
     </FormControl>
     </>

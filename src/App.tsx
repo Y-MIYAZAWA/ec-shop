@@ -7,7 +7,7 @@ import TopPage from "./top_page";
 import { ProtectedRoute } from "./routes/protectedRoute";
 import MyPage from "./features/users/components/MyPage";
 import ItemDetail from "./features/items/components/ItemDetail";
-
+import Cart from "./components/Header/cart";
 
 
 export default function App(){
@@ -27,6 +27,7 @@ export default function App(){
               <MyPage />
             </ProtectedRoute>
           } />
+          <Route path="/cart" Component={Cart} />
         </Routes>
       <Footer />  
     </BrowserRouter>
