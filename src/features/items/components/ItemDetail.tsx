@@ -1,14 +1,21 @@
 import { Card } from "@mui/material";
-import AddToCartButton from "../../../add_to_cart_button";
+import AddToCartButton from "./AddToCartButton";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Item } from "../types/item";
 import { getItemDetail } from "../api/getItemDetail";
 import { Loading } from "../../../components/Elements/Loading/Loading";
+import { CartItem } from "../types/cartItem";
 
 export default function ItemDetail(){
 
   const [isLoading, setLoading] = useState<boolean>(false)
+  const [cartItem, setCartItem] = useState<CartItem>({
+    id: 0,
+    name: "",
+    price: 0,
+    quantity: 0
+  })
 
   const pathName = useLocation().pathname;
   const [item, setItem] = useState<Item>({
@@ -25,6 +32,12 @@ export default function ItemDetail(){
     setLoading(true)
     const itemDetail = async () => {
       const response = await getItemDetail(pathName)
+      setCartItem({
+        id: response.id,
+        name: response.name,
+        price: response.price,
+        quantity: 1,
+      })
       setLoading(false);
       setItem(response);
     }
@@ -43,7 +56,9 @@ export default function ItemDetail(){
       <div id="content">商品詳細:{item.content}</div>
       </>}
     </Card>
-    <AddToCartButton color="yellowgreen" position="right"/>
+    {isLoading ? "" :
+    <AddToCartButton cartItem={cartItem} />
+    }
     </>
   )
 }

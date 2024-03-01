@@ -12,7 +12,7 @@ const LogoutFn = () => {
   const logOut = async () => {
     await Logout();
     setLogin(false);
-    navigate('/');
+    navigate('/login');
   }
 
   useEffect(() => {
