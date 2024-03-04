@@ -3,7 +3,7 @@ import { CartItem } from "../../features/items/types/cartItem";
 import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist({
-  key: 'loginPersistState',
+  key: 'cartPersistState',
   storage: typeof window === 'undefined' ? undefined : window.localStorage,
 })
 

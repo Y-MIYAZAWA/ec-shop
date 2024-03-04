@@ -1,6 +1,5 @@
 import { selector } from "recoil";
 import { cartState } from "../atoms/cartState";
-import { constrainedMemory } from "process";
 
 export const totalPriceSelector = selector({
   key: 'totalPriceSelector',
