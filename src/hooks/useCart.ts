@@ -21,7 +21,6 @@ export const useCart = () => {
         }
       });
     }
-    console.log(cart);
   };
 
   const removeCart = (cartItem: CartItem) => {
