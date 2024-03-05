@@ -6,6 +6,6 @@ export type LoginRequirement = {
   password: string
 }
 
-export const loginWithRequirement = (data: LoginRequirement): Promise<Token> => {
+export const adminLoginWithRequirement = (data: LoginRequirement): Promise<Token> => {
   return axios.post('/auth/admin/signin', data);
 }
