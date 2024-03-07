@@ -1,0 +1,9 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+}
+#contents{
+  margin: 0%;
+}
+
