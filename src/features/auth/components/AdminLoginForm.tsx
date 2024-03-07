@@ -36,13 +36,13 @@ const AdminLoginForm = () => {
 
   const [isLoading, setLoading] = useState<boolean>(false)
 
-  const onSubmit: SubmitHandler<Form> = async (data) => {
+  const onSubmit: SubmitHandler<Form> = (data) => {
     setLoading(true);
 
     adminLoginWithRequirement(data)
     .then((response) => {
     
-    storage.setAdminToken(response.token);
+    storage.setToken(response.token);
 
     dispatch(adminLoginAction.adminLogin())
 
@@ -70,7 +70,7 @@ const AdminLoginForm = () => {
         <TextField required id="email" variant="standard" type="email" label="e-mail" autoComplete="off" {...register("email")} error={'email' in errors} helperText={errors.email?.message} />
         <TextField required id="password" variant="standard" type="password" label="password" {...register("password")} error={'password' in errors} helperText={errors.password?.message} />
         <Button id="button" variant="outlined" disabled={false} onClick={handleSubmit(onSubmit)}>ログイン</Button>
-        {isFailed ? <div>ログインに失敗しました。もう一度お試しください。</div> : 
+        {isFailed ? <div style={{color: "red"}}>ログインに失敗しました。もう一度お試しください。</div> : 
         ""}
         </>}
       </Stack>

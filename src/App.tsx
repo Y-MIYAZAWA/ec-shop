@@ -1,4 +1,4 @@
-import Header from "./components/Header/header";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer/footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogoutFn from "./features/auth/components/LogoutAction";
