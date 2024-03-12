@@ -1,15 +1,12 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-
-
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   isAdminLogin: false
 }
 
-const adminLoginSlice = createSlice({
+export const adminLoginSlice = createSlice({
   name: "adminLoginRed",
-  initialState: initialState,
+  initialState,
   reducers:{
     adminLogin(state){
       state.isAdminLogin = true
@@ -19,11 +16,6 @@ const adminLoginSlice = createSlice({
     }
   }
 })
-
-
-export const store = configureStore({
-  reducer: adminLoginSlice.reducer,
-});
 
 export const adminLoginAction = adminLoginSlice.actions;
 

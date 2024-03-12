@@ -11,7 +11,7 @@ function authRequestIntercepter(config: InternalAxiosRequestConfig){
 
   config.headers.Accept = 'application/json';
   return config;
-}
+};
 
 export const axios = Axios.create({
   baseURL: API_URL
@@ -20,10 +20,10 @@ export const axios = Axios.create({
 axios.interceptors.request.use(authRequestIntercepter);
 axios.interceptors.response.use(
   (response) => {
-    return response.data
+    return response.data;
   },
   (error) => {
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
-)
+);
 
