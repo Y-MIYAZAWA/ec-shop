@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Loading } from "../../../components/Elements/Loading/Loading";
 import { adminLoginWithRequirement } from "../api/adminLogin";
 import { useDispatch } from "react-redux";
-import { adminLoginAction } from "../../../store";
+import { adminLoginAction } from "../../../store/slice";
 
 
 
@@ -44,7 +44,7 @@ const AdminLoginForm = () => {
     
     storage.setToken(response.token);
 
-    dispatch(adminLoginAction.adminLogin())
+    dispatch(adminLoginAction.adminLogin());
 
     setLoading(false);
 
@@ -53,7 +53,7 @@ const AdminLoginForm = () => {
     navigate('/');
     }
     )
-    .catch((error) => {
+    .catch(() => {
       setLoading(false)
       setFailed(true)
     })
