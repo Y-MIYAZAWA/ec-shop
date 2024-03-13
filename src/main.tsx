@@ -1,7 +1,7 @@
 
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
-import App from './App';
+// import App from './App';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';

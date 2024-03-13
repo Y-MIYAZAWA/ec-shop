@@ -27,7 +27,7 @@ const schema = yup.object({
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [isLogin, setLogin] = useRecoilState<boolean>(loginState);
+  const [, setLogin] = useRecoilState<boolean>(loginState);
   const [isFailed, setFailed] = useState<boolean>(false);
 
   const { register, handleSubmit, formState: {errors} } = useForm<Form>({
@@ -53,7 +53,7 @@ const LoginForm = () => {
     navigate('/');
     }
     )
-    .catch((error) => {
+    .catch(() => {
       setLoading(false)
       setFailed(true)
     })

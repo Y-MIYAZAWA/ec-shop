@@ -9,7 +9,9 @@ import { useState } from "react";
 import { Loading } from "../../../components/Elements/Loading/Loading";
 import { adminLoginWithRequirement } from "../api/adminLogin";
 import { useDispatch } from "react-redux";
-import { adminLoginAction } from "../../../store/slice";
+import { adminLoginAction } from "../../../store/adminLoginSlice";
+import { adminUserGet } from "../../../store/adminUserSlice";
+import { AppDispatch } from "../../../store/store";
 
 
 
@@ -28,6 +30,7 @@ const schema = yup.object({
 const AdminLoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const appDispatch: AppDispatch = useDispatch();
   const [isFailed, setFailed] = useState<boolean>(false);
 
   const { register, handleSubmit, formState: {errors} } = useForm<Form>({
@@ -45,6 +48,7 @@ const AdminLoginForm = () => {
     storage.setToken(response.token);
 
     dispatch(adminLoginAction.adminLogin());
+    appDispatch(adminUserGet());
 
     setLoading(false);
 

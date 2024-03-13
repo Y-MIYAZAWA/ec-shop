@@ -19,9 +19,9 @@ export const ItemsAndPaging = () => {
     to: 0,
     total: 0,});
   const [items, setItems] = useState<Item[]>([]);
-  const itemPerPage = 1;
+  const itemPerPage = 2;
 
-  const [isLoading, setLoading] = useState<boolean>(false)
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true)
@@ -31,9 +31,9 @@ export const ItemsAndPaging = () => {
       setPaging(response);
       const responseData = response.data;
       setItems(responseData);
-      setLoading(false)
+      setLoading(false);
     }
-    getItemAndPage()
+    getItemAndPage();
   },[])
 
   const handlePageChange = (event: ChangeEvent<unknown>,page: number) => {
@@ -44,9 +44,9 @@ export const ItemsAndPaging = () => {
       setPaging(response);
       const responseData = response.data;
       setItems(responseData);
-      setLoading(false)
+      setLoading(false);
     }
-    getItemAndPage()
+    getItemAndPage();
   }
 
 
