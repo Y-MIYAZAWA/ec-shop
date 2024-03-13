@@ -3,6 +3,8 @@ import { Item } from "../types/item"
 import { getItems } from "../api/getItems";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../store/adminUserSlice";
+import { AdminItemCard } from "./AdminItemCard";
+import { Loading } from "../../../components/Elements/Loading/Loading";
 
 export const AdminItemsAndScrolling = () => {
   const [items, setItems] = useState<Item[]>([]);
@@ -11,21 +13,32 @@ export const AdminItemsAndScrolling = () => {
 
   const adminId = useSelector(selectUser).data.id;
 
-  useEffect(() => {
+  const getAdminItems = () => {
     setLoading(true);
-    const getAdminItems = async () => {
-      const props = {limit: itemPerPage, page: 1};
-      const response = await getItems(props);
-      const responceData = response.data;
-      const adminItems = responceData.filter( item => item.createdBy == adminId);
-      setItems(adminItems);
-      setLoading(false);
-    }
+    const props = {limit: itemPerPage, page: 1};
+    getItems(props)
+    .then((response) =>{
+    const adminItems = response.data.filter( item => item.createdBy == adminId);
+    setItems(adminItems);
+    setLoading(false);
+    })
+  };
+
+  useEffect(() => {
     getAdminItems();
-  },[]);
+    },[]);
+
 
   return(
   <>
+  {isLoading ? <Loading /> :
+  <div>
+    {items.map((item: Item) => {
+      return(
+        <AdminItemCard name={item.name} price={item.price} content={item.content} path={`items/${item.id}`} />
+      )
+    })}
+  </div>}
   </>
   )
 }

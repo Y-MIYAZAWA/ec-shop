@@ -3,7 +3,6 @@ import { useState } from "react"
 import * as yup from 'yup'
 import { Loading } from "../../../components/Elements/Loading/Loading";
 import '../../../assets/css/admin_post_item.css';
-import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PostItem } from "../types/postItem";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,7 +22,7 @@ export const AdminPostItem = () => {
 
   const { register, handleSubmit, formState: {errors}} = useForm<PostItem>({
     resolver: yupResolver(scheme)
-  })
+  });
 
   const onSubmit: SubmitHandler<PostItem> = (data) => {
     setLoading(true);
